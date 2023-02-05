@@ -40,12 +40,18 @@ const synthB =  new Tone.MonoSynth().connect(cheby).connect(freeverb).connect(au
 Tone.getDestination().volume.rampTo(-35, .1);
 function noiseTime(){
     document.body.style.cursor = 'pointer'
-    synthA.triggerAttackRelease(notesLow[Math.floor(Math.random() * notesLow.length)], 1);
+    if(Tone.context.state === "running"){
+    const now = Tone.now()
+    synthA.triggerAttackRelease(notesLow[Math.floor(Math.random() * notesLow.length)], 1, now);
+    }
 }
 
 function noiseTime2(){
     document.body.style.cursor = 'auto'
-    synthB.triggerAttackRelease(notesHigh[Math.floor(Math.random() * notesHigh.length)], 1);
+
+    if(Tone.context.state === "running"){
+    const now = Tone.now()
+    synthB.triggerAttackRelease(notesHigh[Math.floor(Math.random() * notesHigh.length)], 1, now);}
 }
 
 
@@ -80,7 +86,7 @@ useFrame((state, delta) => {
         onPointerOut={()=> noiseTime2()}
         
         >
-          {'noise'.toUpperCase()}
+          {'noise?'.toUpperCase()}
           <planeMaterial ref={planeMaterial} side={THREE.DoubleSide} transparent/>
 
         

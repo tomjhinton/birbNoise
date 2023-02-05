@@ -4,7 +4,7 @@ import { useFrame } from "@react-three/fiber"
 export default function Lights()
 {
 
-    console.log('recompile')
+    // console.log('recompile')
 
     return <>
         <directionalLight

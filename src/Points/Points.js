@@ -37,7 +37,7 @@ export default function PointsComponent(props){
     )
     extend({PointMaterial})
 
-    console.log(PointMaterial)
+    // console.log(PointMaterial)
 
 const ref = useRef()
 // Hold state for hovered and clicked events
