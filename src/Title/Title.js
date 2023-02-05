@@ -6,10 +6,11 @@ import fragmentShader from './shaders/fragment.js'
 import * as THREE from 'three'
 import * as Tone from 'tone'
 
+const vol = new Tone.Volume(-132).toDestination();
 
 const cheby = new Tone.Chebyshev(50).toDestination();
 // create a monosynth connected to our cheby
-const synthA = new Tone.MonoSynth().connect(cheby);
+const synthA = new Tone.MonoSynth().connect(cheby).connect(vol);
 const notesHigh = ['E3','F3','G3','A3','D3','E4','F4','G4','A4','D4']
 const notesLow = ['E2','F2','G2','A2','D2','E1','F1','G1','A1','D1']
 
@@ -35,9 +36,8 @@ freeverb.dampening = 1000;
 synthA.connect(freeverb)
 
 
-const synthB =  new Tone.MonoSynth().connect(cheby).connect(freeverb).connect(autoWah).connect(bitCrusher).connect(distortion).connect(reverb);
-
-
+const synthB =  new Tone.MonoSynth().connect(cheby).connect(freeverb).connect(autoWah).connect(bitCrusher).connect(distortion).connect(reverb).connect(vol);
+Tone.getDestination().volume.rampTo(-35, .1);
 function noiseTime(){
     document.body.style.cursor = 'pointer'
     synthA.triggerAttackRelease(notesLow[Math.floor(Math.random() * notesLow.length)], 1);
