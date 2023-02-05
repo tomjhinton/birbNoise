@@ -81,6 +81,7 @@ useFrame((state, delta) => {
         scale={6. }
         // maxWidth={1}
         position={ [ .0, 16.65, 0 ] }
+        onClick={() =>Tone.start()}
         onPointerMissed={()=> Tone.start()}
         onPointerOver={()=> noiseTime()}
         onPointerOut={()=> noiseTime2()}
