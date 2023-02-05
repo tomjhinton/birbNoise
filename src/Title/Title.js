@@ -10,7 +10,7 @@ import * as Tone from 'tone'
 const cheby = new Tone.Chebyshev(50).toDestination();
 // create a monosynth connected to our cheby
 const synthA = new Tone.MonoSynth().connect(cheby);
-const notesHigh = ['E5','F5','G5','A5','D5','E6','F6','G6','A6','D6']
+const notesHigh = ['E5','F5','G5','A5','D5','E4','F4','G4','A4','D4']
 const notesLow = ['E2','F2','G2','A2','D2','E3','F3','G3','A3','D3']
 
 const distortion = new Tone.Distortion(0.4).toDestination();
@@ -35,7 +35,7 @@ freeverb.dampening = 1000;
 synthA.connect(freeverb)
 
 
-const synthB =  new Tone.AMSynth().connect(freeverb).connect(autoWah).connect(delay).connect(bitCrusher).connect(cheby).connect(distortion);
+const synthB =  new Tone.MonoSynth().connect(cheby).connect(freeverb).connect(autoWah).connect(bitCrusher).connect(distortion).connect(reverb);
 
 
 function noiseTime(){
@@ -45,7 +45,7 @@ function noiseTime(){
 
 function noiseTime2(){
     document.body.style.cursor = 'auto'
-    synthB.triggerAttackRelease(notesLow[Math.floor(Math.random() * notesLow.length)], 1);
+    synthB.triggerAttackRelease(notesHigh[Math.floor(Math.random() * notesHigh.length)], 1);
 }
 
 
