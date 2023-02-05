@@ -10,8 +10,8 @@ import * as Tone from 'tone'
 const cheby = new Tone.Chebyshev(50).toDestination();
 // create a monosynth connected to our cheby
 const synthA = new Tone.MonoSynth().connect(cheby);
-const notesHigh = ['E5','F5','G5','A5','D5','E4','F4','G4','A4','D4']
-const notesLow = ['E2','F2','G2','A2','D2','E3','F3','G3','A3','D3']
+const notesHigh = ['E3','F3','G3','A3','D3','E4','F4','G4','A4','D4']
+const notesLow = ['E2','F2','G2','A2','D2','E1','F1','G1','A1','D1']
 
 const distortion = new Tone.Distortion(0.4).toDestination();
 //connect a player to the distortion
